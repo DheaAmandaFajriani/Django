@@ -1,0 +1,37 @@
+{% extends "main.html" %}
+
+{% block content%}
+
+<h1>{{judul}}</h1>
+</br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5">
+                <a class="btn btn-primary btn-sm btn-block" href="/addmhs">Tambah Mahasiswa</a>
+                <hr>
+                <div class="card card-body">
+                  <h4>Daftar Mahasiswa </h4>
+                    <table class="table table-sm">
+                        <tr>
+                            <th></th>
+                            <th>NIM</th>
+                            <th>no kartu</th>
+                            <th> nama</th>
+                        </tr>
+
+                        <tbody>
+                            {% for mhs in mhsa %}
+                            <tr>
+                                <td></td>
+                                <td> {{mhs.nim}}</td>
+                                <td> {{mhs.nokartu}}</td>
+                                <td> {{mhs.nama}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody> 
+                    </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

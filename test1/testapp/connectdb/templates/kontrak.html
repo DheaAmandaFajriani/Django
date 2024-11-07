@@ -1,0 +1,52 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<h1>{{ judul }}</h1>
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+            <a class="btn btn-primary btn-sm btn-block" href="/addkontrak">Kontrak</a>
+            <hr>
+            <div class="card card-body">
+                <h4>Daftar Kontrak Matkul</h4>
+                <table class="table table-sm">
+                    <tr>
+                        <th></th>
+                        <th>Id Kontrak</th>
+                        <th>Mata Kuliah</th>
+                        <th>Dosen Pengajar</th>
+                        <th>Mahasiswa</th>
+                        <th>Kelas</th>
+                    </tr>
+                    <tbody>
+                        {{kontrak}}
+                        {% comment %} {% for kontrak in kontrak %}
+                            <tr>
+                                <td></td>
+                                <td>{{kontrak.id_kontrak}}</td>
+                                <td>{{kontrak.id_matkul}}</td>
+                                <td>{{kontrak.id_dosen}}</td>
+                                <td>{{kontrak.id_mhs}}</td>
+                                <td>{{kontrak.id_kelas}}</td>
+                            </tr>
+                        {% endfor %} {% endcomment %}
+                    </tbody>
+                    {% comment %} <tbody>
+                            <tr>
+                                <td></td>
+                                <td>1</td>
+                                <td>ada</td>
+                                <td>ada</td>
+                                <td>ada</td>
+                                <td>ada</td>
+                            </tr>
+                    </tbody> {% endcomment %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,39 @@
+{% extends "main.html" %}
+
+ {% block content%}
+ <h1>{{judul}}</h1>
+</br>
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-5">
+              <a class="btn btn-primary btn-sm btn-block" href="/addkelas">daftarkan kelas</a>
+              <hr>
+              <div class="card card-body">
+                <h4>daftar mata kuliah </h4>
+                  <table class="table table-sm">
+                      <tr>
+                          <th></th>
+                          <th>kode mata kuliah </th>
+                          <th>nama mata kuliah </th>
+                        
+                      </tr>
+
+                      <tbody>
+                          {% for matkul in matkul2 %}
+                          <tr>
+                              <td></td>
+                              <td> {{matkul.id_matkul}}</td>
+                              <td> {{matkul.nama}}</td>
+                              {% comment %} <td> {{matkul2.dosen}}</td> {% endcomment %}
+                          </tr>
+                          {% endfor %}
+                      </tbody>
+                      
+                  </table>
+          </div>
+      </div>
+  </div>
+  {% endblock content %}
+ 
+
+

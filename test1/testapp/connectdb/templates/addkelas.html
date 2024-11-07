@@ -1,0 +1,40 @@
+{% extends "main.html" %}
+
+{% block content %}
+ <div class="col-md-12">
+    <form method="POST" class ="post-form" action="/addkelas">
+     {% csrf_token %}
+    <div class="container">
+        <div class= "col-12">
+            <h3> Isi data matkul</h3>
+        </div>
+
+        <div class="mb-3">
+         <label> Nomor ID matkul :</label>
+         {{form.id_matkul}}
+        </div>
+
+        {% comment %} <div class="mb-3">
+         <label> Nomor ID Dosen :</label>
+         {{form.dosen}}
+        </div> {% endcomment %}
+
+        <div class="mb-3">
+         <label> Nama matkul :</label>
+         {{form.nama}}
+        </div>
+        
+        <div class="mb-3">
+         <button type="submit" class="btn btn-primary">
+            submit</button>
+        </div>
+
+
+    </div>
+    </form>
+</div>
+{% endblock content %}
+
+
+
+
