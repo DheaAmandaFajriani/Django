@@ -1,0 +1,113 @@
+{% extends "main2.html" %}
+
+{% block content %}
+
+ <h1>{{ judul }}</h1>
+ <br>
+
+<main role="main" class="container">
+
+    <h4>Filter Kelas</h4>
+    <form method="GET" action=".">
+      <div class="form-row">
+          <div class="form-group col-5">
+              <div class="input-group">
+                  <label for="matakuliah" class="mr-3" style="width: 100px;">Mata Kuliah: </label>
+                  {% comment %} <input type="text" name="matakuliah" id="matakuliah" value="{{ request.GET.matakuliah }}"> {% endcomment %}
+                  <select name="matakuliah" id="matakuliah" class="form-control" value="{{ request.GET.matakuliah }}">
+                        <option value="">-------</option> 
+                    {% for matkul in matkul2 %} <!-- "mhsa" adalah queryset yang berisi data mahasiswa -->
+                        <option value="{{ matkul.nama}}">{{matkul.nama }}</option>
+                    {% endfor %}
+                </select>
+                  </span>
+              </div>
+          </div>        
+      </div>
+
+
+      <div class="form-row">
+          <div class="form-group col-5">
+              <div class="input-group">
+                  <label for="kelas"  class="mr-3" style="width: 100px;">Kelas: </label>
+                  {% comment %} <input type="text" name="kelas" id="kelas" value="{{ request.GET.kelas }}"> {% endcomment %}
+                  <select name="kelas" id="kelas" class="form-control" value="{{ request.GET.kelas }}">
+                        <option value="">-------</option> 
+                    {% for kelas in kelass %} <!-- "mhsa" adalah queryset yang berisi data mahasiswa -->
+                        <option value="{{kelas.nm_kelas}}">{{kelas.nm_kelas}}</option>
+                    {% endfor %}
+                </select>
+              </div>
+          </div>        
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-5">
+            <div class="input-group">
+                 <label for="dosen"  class="mr-3" style="width: 100px;">Dosen: </label>
+                 {% comment %} <input type="text" name="dosen" id="dosen" value="{{ request.GET.dosen }}"> {% endcomment %}
+                 <select name="dosen" id="dosen" class="form-control" value="{{ request.GET.dosen }}">
+                        <option value="">-------</option> 
+                    {% for doosen in doseen %} <!-- "mhsa" adalah queryset yang berisi data mahasiswa -->
+                        <option value="{{ doosen.nama}}">{{doosen.nama }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>        
+    </div>
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form> 
+    {% comment %} <form method="get">
+        <label for="matakuliah">Mata Kuliah:</label>
+        <input type="text" name="matakuliah" id="matakuliah" value="{{ request.GET.matakuliah }}">
+        
+        <label for="kelas">Kelas:</label>
+        <input type="text" name="kelas" id="kelas" value="{{ request.GET.kelas }}">
+
+        <label for="dosen">Dosen:</label>
+        <input type="text" name="dosen" id="dosen" value="{{ request.GET.dosen }}">
+
+        <button type="submit">Filter</button>
+    </form> {% endcomment %}
+
+    
+        <h2>hasil filter </h2>
+        <table class="table table-sm">
+            <tr>
+                <th>NIM</th>
+                <th>Nama Mhs</th>
+                <th>Kelas</th>
+                <th>Dosen Pengajar</th>
+                <th>Matkul</th>
+                <th>Keterangan</th>
+                
+            </tr>
+            
+         <tbody>
+         {% for kontrak in kontrak_list %}
+           <tr>
+            <td>{{ kontrak.id_mhs.nim }}</td>
+            <td>{{ kontrak.id_mhs.nama }}</td>
+            <td>{{ kontrak.id_kelas.nm_kelas }}</td>
+            <td>{{ kontrak.id_kelas.id_dosen.nama }}</td>
+            <td>{{ kontrak.id_kelas.id_matkul.nama }}</td>
+            <td>
+                <form method="post" action="{% url 'tambah_kehadiran' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="id_kelas" value="{{ kontrak.id_kelas.id_kelas }}">
+                    <input type="hidden" name="id_mhs" value="{{ kontrak.id_mhs.nim }}">
+                    <button type="submit" name="keterangan" value="1">Hadir</button>
+                    <button type="submit" name="keterangan" value="0">Tidak Hadir</button>
+                </form>
+            </td>
+           </tr>
+         {% empty %}
+         <tr>
+            <td >Tidak ada data yang ditemukan</td>
+         </tr>
+         {% endfor %}
+        </table>
+    </tbody>
+
+ </main>
+{% endblock content %}

@@ -1,0 +1,80 @@
+{% extends "main2.html" %}
+
+{% block content %}
+
+<h1>{{ judul }}</h1>
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Kolom Daftar Mahasiswa -->
+        <div class="col-md-6">
+            <div class="card card-body">
+              <h4>Daftar Mata Kuliah </h4>
+                <table class="table table-sm">
+                    <tr>
+                        <th></th>
+                        <th>Id Kontrak</th>
+                        <th>Mahasiswa</th>
+                        <th>Kelas</th>
+                    </tr>
+
+                    <tbody>
+                      {% for kontrak in kontrak %}
+                            <tr>
+                                <td></td>
+                                <td>{{kontrak.id_kontrak}}</td>
+                                <td>{{kontrak.id_mhs}}</td> 
+                                <td>{{kontrak.id_kelas}}</td>
+                            </tr>
+                        {% endfor %} 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card card-body">
+                <h5>Tambah Kontrak Mata Kuliah  </h5>
+            </br>
+                <form method="POST" class ="post-form" action="/kontrak2">
+                 {% csrf_token %}
+
+                 <div class="form-group">
+                    <label for="id_kontrak"  style="width: 150px;">kode Kontak Matkul </label>
+                    <input type="text"  name="id_kontrak" id="id_kontrak">
+                   
+                 </div>
+
+                 <div class="form-group">
+                    <label for="id_mhs"  style="width: 150px;">Nama Mahasiswa</label>
+                    <select name="id_mhs" id="id_mhs" class="form-control">
+                        <option value="">-------</option> 
+                        {% for mhs in mhsa %}  <!-- "mhsa" adalah queryset yang berisi data mahasiswa -->
+                            <option value="{{ mhs.nim }}">{{ mhs.nama }}</option>
+                        {% endfor %}
+                    </select>
+                    
+                 </div>
+
+                 <div class="form-group">
+                    <label for="id_kelas"  style="width: 150px;">Nama Kelas </label>
+                    <select name="id_kelas" id="id_kelas" class="form-control">
+                        <option value="">-------</option> 
+                        {% for kelas in kelass %}  <!-- "mhsa" adalah queryset yang berisi data mahasiswa -->
+                            <option value="{{ kelas.id_kelas }}">{{kelas.nm_kelas }}</option>
+                        {% endfor %}
+                    </select>
+                    
+                 </div>
+
+                 <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">
+                       submit</button>
+                   </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+{% endblock content %}
