@@ -11,24 +11,24 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='kontrak',
-            name='id_dosen',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='connectdb.dosen'),
-        ),
-        migrations.AlterField(
-            model_name='kontrak',
-            name='id_kelas',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='connectdb.kelas'),
-        ),
-        migrations.AlterField(
-            model_name='kontrak',
-            name='id_matkul',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='connectdb.matkul'),
-        ),
-        migrations.AlterField(
-            model_name='kontrak',
-            name='id_mhs',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='connectdb.mahasiswaa'),
+         migrations.AlterField(
+             model_name='kontrak',
+             name='id_dosen',
+             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='connectdb.dosen'),
+         ),
+         migrations.AlterField(
+             model_name='kontrak',
+             name='id_kelas',
+             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='connectdb.kelas'),
+         ),
+         migrations.AlterField(
+             model_name='kontrak',
+             name='id_matkul',
+             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='connectdb.matkul'),
+         ),
+         migrations.AlterField(
+             model_name='kontrak',
+             name='id_mhs',
+             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='connectdb.mahasiswaa'),
         ),
     ]
